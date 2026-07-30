@@ -4,6 +4,17 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>理想生活現金流試算｜陪伴你建構安心未來</title>
+
+  <!-- Google tag (gtag.js) GA4 追蹤碼 -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZRZMFTCPHM"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-ZRZMFTCPHM');
+  </script>
+
   <style>
     :root {
       --bg-color: #FAF6F0;
@@ -108,7 +119,6 @@
       color: var(--gap-color);
     }
 
-    /* 調整詳細資料排版，避免手機上擠成一團 */
     .result-details {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -286,7 +296,9 @@
   <div class="cta-box">
     <h3>💡 算完發現國家給的跟理想有落差？</h3>
     <p id="gapText">別慌！退休規劃的重點不是死存幾千萬，而是打造源源不絕的「被動月現金流」。讓財務地基診斷師陪你一起揪出盲點，建構安心人生夥伴關係！</p>
-    <a href="https://line.me/R/ti/p/@221hssks" class="line-btn" target="_blank">🎯 預約專屬：財務地基免費健檢</a>
+    
+    <!-- 包含 GA4 點擊追蹤事件的 LINE 按鈕 -->
+    <a href="https://line.me/R/ti/p/@221hssks" class="line-btn" target="_blank" onclick="gtag('event', 'click_line_consult', {'event_category': 'CTA'});">🎯 預約專屬：財務地基免費健檢</a>
   </div>
 </div>
 
