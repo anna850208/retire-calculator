@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>理想生活現金流試算｜陪伴你建構安心未來</title>
+  <style>
+    :root {
+      --bg-color: #FAF6F0;
+      --card-bg: #FFFFFF;
+      --primary: #E88D67;
+      --primary-hover: #D87B55;
+      --text-main: #4A403A;
+      --text-sub: #7A6F68;
+      --accent-bg: #FFF8E7;
+      --accent-border: #F7E1AD;
+      --input-bg: #FDFBF7;
+      --border-color: #E6DFD5;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      display: flex;
+      justify-content: center;
+      padding: 24px 16px;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 28px 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
+    .header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .header h1 {
+      font-size: 1.35rem;
+      color: var(--text-main);
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    .header p {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+    }
+
+    .result-card {
+      background: linear-gradient(135deg, #7C9885 0%, #637E6B 100%);
+      color: #FFFFFF;
+      border-radius: 18px;
+      padding: 20px;
+      text-align: center;
+      margin-bottom: 24px;
+      box-shadow: 0 4px 12px rgba(99, 126, 107, 0.2);
+    }
+
+    .result-title {
+      font-size: 0.85rem;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+
+    .result-main {
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 12px;
+      color: #FFF;
+    }
+
+    .result-details {
+      display: flex;
+      justify-content: space-around;
+      border-top: 1px dashed rgba(255,255,255,0.3);
+      padding-top: 12px;
+      font-size: 0.85rem;
+    }
+
+    .result-details div {
+      text-align: center;
+    }
+
+    .result-details span {
+      display: block;
+      font-weight: 600;
+      font-size: 1rem;
+      margin-top: 2px;
+    }
+
+    .input-group {
+      margin-bottom: 18px;
+    }
+
+    .input-group label {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .input-group select,
+    .input-group input {
+      width: 100%;
+      padding: 12px 14px;
+      border: 1.5px solid var(--border-color);
+      border-radius: 12px;
+      background-color: var(--input-bg);
+      font-size: 0.95rem;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .input-group select:focus,
+    .input-group input:focus {
+      border-color: var(--primary);
+      background-color: #FFFFFF;
+    }
+
+    .calc-btn {
+      width: 100%;
+      background-color: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      padding: 14px;
+      border-radius: 14px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(232, 141, 103, 0.3);
+      transition: transform 0.1s ease, background-color 0.2s;
+      margin-top: 8px;
+    }
+
+    .calc-btn:active {
+      transform: scale(0.98);
+    }
+
+    .cta-box {
+      margin-top: 24px;
+      background-color: var(--accent-bg);
+      border: 1px solid var(--accent-border);
+      border-radius: 18px;
+      padding: 18px;
+      text-align: center;
+    }
+
+    .cta-box h3 {
+      font-size: 0.95rem;
+      color: #8C6239;
+      margin-bottom: 8px;
+    }
+
+    .cta-box p {
+      font-size: 0.85rem;
+      color: var(--text-sub);
+      margin-bottom: 14px;
+      line-height: 1.5;
+    }
+
+    .line-btn {
+      display: inline-block;
+      width: 100%;
+      background-color: #06C755;
+      color: white;
+      text-decoration: none;
+      padding: 12px;
+      border-radius: 12px;
+      font-weight: 700;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 10px rgba(6, 199, 85, 0.2);
+    }
+
+    .gap-warning {
+      color: #D9534F;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="header">
+    <h1>🌱 國家退休金預估與現金流健檢</h1>
+    <p>簡單 30 秒，幫你梳理未來的安心保障</p>
+  </div>
+
+  <div class="result-card">
+    <div class="result-title">預估退休後「每月可領國家退休金」</div>
+    <div class="result-main" id="totalIncome">$ 0</div>
+    <div class="result-details">
+      <div>
+        1. 勞保年金/月
+        <span id="labourInsurance">$ 0</span>
+      </div>
+      <div>
+        2. 勞退新制/月
+        <span id="labourPension">$ 0</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="input-group">
+    <label for="salary">1. 預估退休前的「平均月投保薪資」</label>
+    <select id="salary">
+      <option value="45800" selected>45,800 元 (目前勞保最高級距)</option>
+      <option value="43900">43,900 元</option>
+      <option value="42000">42,000 元</option>
+      <option value="38200">38,200 元</option>
+      <option value="34800">34,800 元</option>
+      <option value="27470">27,470 元 (基本工資級距)</option>
+    </select>
+  </div>
+
+  <div class="input-group">
+    <label for="years">2. 預計到退休時的「總勞工年資」</label>
+    <input type="number" id="years" value="30" placeholder="例如：30">
+  </div>
+
+  <div class="input-group">
+    <label for="ideal">3. 理想中的「退休每月生活費」 (選填)</label>
+    <input type="number" id="ideal" value="50000" placeholder="例如：50000">
+  </div>
+
+  <button class="calc-btn" onclick="calculate()">✨ 開始一鍵財務健檢</button>
+
+  <div class="cta-box">
+    <h3>💡 算完發現國家給的跟理想有落差？</h3>
+    <p id="gapText">別慌！退休規劃的重點不是存幾千萬，而是打造源源不絕的「被動月現金流」。讓財務地基診斷師陪你一起揪出盲點，建構安心人生夥伴關係！</p>
+    <!-- 已綁定指定 LINE ID -->
+    <a href="https://line.me/R/ti/p/@221hssks" class="line-btn" target="_blank">🎯 預約專屬：財務地基免費健檢</a>
+  </div>
+</div>
+
+<script>
+function calculate() {
+  const salary = parseFloat(document.getElementById('salary').value) || 0;
+  const years = parseFloat(document.getElementById('years').value) || 0;
+  const ideal = parseFloat(document.getElementById('ideal').value) || 0;
+
+  // 勞保年金計算 (展延/所得替代率基礎公式：平均薪資 * 年資 * 1.55%)
+  const labourInsurance = Math.round(salary * years * 0.0155);
+
+  // 勞退新制預估 (假設提繳6%、投資報酬率與平均餘命計算之簡單估計模型)
+  // 公式簡化：月薪 * 6% * 12月 * 年資 * 複利因子 / 240個月
+  const labourPension = Math.round((salary * 0.06 * 12 * years * 1.2) / 240);
+
+  const total = labourInsurance + labourPension;
+
+  document.getElementById('labourInsurance').innerText = '$ ' + labourInsurance.toLocaleString();
+  document.getElementById('labourPension').innerText = '$ ' + labourPension.toLocaleString();
+  document.getElementById('totalIncome').innerText = '$ ' + total.toLocaleString();
+
+  const gapText = document.getElementById('gapText');
+  if (ideal > 0) {
+    const gap = ideal - total;
+    if (gap > 0) {
+      gapText.innerHTML = `算了一下，距離你理想的每月 <b style="color:#E88D67;">$${ideal.toLocaleString()}</b> 生活費，每月還有 <span class="gap-warning">$${gap.toLocaleString()}</span> 的現金流缺口。<br><br>別擔心！退休規劃的重點不是死存幾千萬，而是打造源源不絕的「被動月現金流」。點擊下方讓我們一起找方案！`;
+    } else {
+      gapText.innerHTML = `太棒了！國家給予的預估保障已接近你的理想生活費需求！不過別忘了考量通膨與醫療預備金，讓財務地基診斷師陪你精益求精。`;
+    }
+  }
+}
+
+// 頁面載入時先試算一次
+calculate();
+</script>
+
+</body>
+</html>
