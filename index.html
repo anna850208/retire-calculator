@@ -16,10 +16,7 @@
       --accent-border: #F7E1AD;
       --input-bg: #FDFBF7;
       --border-color: #E6DFD5;
-      --sage-dark: #58725F;
-      --sage-light: #7C9885;
-      --coral-light: #F7D6C8;
-      --coral-text: #C85A32;
+      --gap-color: #FFD2C2;
     }
 
     * {
@@ -34,16 +31,16 @@
       color: var(--text-main);
       display: flex;
       justify-content: center;
-      padding: 24px 16px;
+      padding: 20px 14px;
       line-height: 1.6;
     }
 
     .container {
       width: 100%;
-      max-width: 480px;
+      max-width: 440px;
       background: var(--card-bg);
       border-radius: 24px;
-      padding: 28px 20px;
+      padding: 24px 18px;
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
     }
 
@@ -53,39 +50,38 @@
     }
 
     .header h1 {
-      font-size: 1.35rem;
+      font-size: 1.3rem;
       color: var(--text-main);
       margin-bottom: 6px;
       font-weight: 700;
     }
 
     .header p {
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       color: var(--text-sub);
     }
 
-    /* 頂部雙核心結果卡片 */
     .result-card {
       background: linear-gradient(145deg, #6A8772 0%, #516B58 100%);
       color: #FFFFFF;
       border-radius: 20px;
-      padding: 20px;
-      margin-bottom: 24px;
-      box-shadow: 0 6px 16px rgba(81, 107, 88, 0.25);
+      padding: 18px 14px;
+      margin-bottom: 22px;
+      box-shadow: 0 6px 16px rgba(81, 107, 88, 0.22);
     }
 
     .result-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-bottom: 16px;
+      gap: 10px;
+      margin-bottom: 14px;
     }
 
     .result-box {
       background: rgba(255, 255, 255, 0.12);
       backdrop-filter: blur(4px);
       border-radius: 14px;
-      padding: 14px 10px;
+      padding: 12px 6px;
       text-align: center;
       border: 1px solid rgba(255, 255, 255, 0.18);
     }
@@ -96,50 +92,53 @@
     }
 
     .result-label {
-      font-size: 0.78rem;
+      font-size: 0.75rem;
       opacity: 0.9;
       margin-bottom: 4px;
-      letter-spacing: 0.3px;
+      letter-spacing: 0.2px;
     }
 
     .result-val {
-      font-size: 1.45rem;
+      font-size: 1.35rem;
       font-weight: 800;
       color: #FFFFFF;
     }
 
     .result-val.highlight-gap {
-      color: #FFD2C2;
+      color: var(--gap-color);
     }
 
+    /* 調整詳細資料排版，避免手機上擠成一團 */
     .result-details {
-      display: flex;
-      justify-content: space-around;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
       border-top: 1px dashed rgba(255, 255, 255, 0.25);
       padding-top: 12px;
-      font-size: 0.82rem;
+      font-size: 0.75rem;
       color: rgba(255, 255, 255, 0.9);
+      text-align: center;
     }
 
     .result-details div {
-      text-align: center;
+      padding: 0 2px;
     }
 
     .result-details span {
       display: block;
       font-weight: 700;
-      font-size: 0.95rem;
-      margin-top: 2px;
+      font-size: 0.9rem;
+      margin-top: 4px;
       color: #FFF;
     }
 
     .input-group {
-      margin-bottom: 18px;
+      margin-bottom: 16px;
     }
 
     .input-group label {
       display: block;
-      font-size: 0.9rem;
+      font-size: 0.88rem;
       font-weight: 600;
       margin-bottom: 6px;
       color: var(--text-main);
@@ -176,7 +175,7 @@
       cursor: pointer;
       box-shadow: 0 4px 12px rgba(232, 141, 103, 0.3);
       transition: transform 0.1s ease, background-color 0.2s;
-      margin-top: 6px;
+      margin-top: 4px;
     }
 
     .calc-btn:active {
@@ -184,22 +183,22 @@
     }
 
     .cta-box {
-      margin-top: 24px;
+      margin-top: 22px;
       background-color: var(--accent-bg);
       border: 1px solid var(--accent-border);
       border-radius: 18px;
-      padding: 18px;
+      padding: 18px 16px;
       text-align: center;
     }
 
     .cta-box h3 {
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       color: #8C6239;
       margin-bottom: 8px;
     }
 
     .cta-box p {
-      font-size: 0.85rem;
+      font-size: 0.83rem;
       color: var(--text-sub);
       margin-bottom: 14px;
       line-height: 1.5;
@@ -232,7 +231,6 @@
     <p>簡單 30 秒，幫你梳理未來的安心保障</p>
   </div>
 
-  <!-- 結果展示卡片 -->
   <div class="result-card">
     <div class="result-grid">
       <div class="result-box">
@@ -261,7 +259,6 @@
     </div>
   </div>
 
-  <!-- 輸入區域 -->
   <div class="input-group">
     <label for="salary">1. 預估退休前的「平均月投保薪資」</label>
     <select id="salary" onchange="calculate()">
@@ -286,11 +283,9 @@
 
   <button class="calc-btn" onclick="calculate()">✨ 開始一鍵財務健檢</button>
 
-  <!-- 溫暖引導預約區 -->
   <div class="cta-box">
     <h3>💡 算完發現國家給的跟理想有落差？</h3>
     <p id="gapText">別慌！退休規劃的重點不是死存幾千萬，而是打造源源不絕的「被動月現金流」。讓財務地基診斷師陪你一起揪出盲點，建構安心人生夥伴關係！</p>
-    <!-- 已綁定指定官方 LINE -->
     <a href="https://line.me/R/ti/p/@221hssks" class="line-btn" target="_blank">🎯 預約專屬：財務地基免費健檢</a>
   </div>
 </div>
@@ -301,19 +296,11 @@ function calculate() {
   const years = parseFloat(document.getElementById('years').value) || 0;
   const ideal = parseFloat(document.getElementById('ideal').value) || 0;
 
-  // 1. 勞保年金計算 (所得替代率 1.55%)
   const labourInsurance = Math.round(salary * years * 0.0155);
-
-  // 2. 勞退新制估算 (6% 提繳 + 估算投報率與平均餘命)
   const labourPension = Math.round((salary * 0.06 * 12 * years * 1.2) / 240);
-
-  // 3. 國家退休金總計
   const total = labourInsurance + labourPension;
-
-  // 4. 計算每月缺口
   const gap = ideal - total;
 
-  // 更新顯示數字
   document.getElementById('labourInsurance').innerText = '$ ' + labourInsurance.toLocaleString();
   document.getElementById('labourPension').innerText = '$ ' + labourPension.toLocaleString();
   document.getElementById('totalIncome').innerText = '$ ' + total.toLocaleString();
@@ -333,19 +320,8 @@ function calculate() {
   }
 }
 
-// 頁面載入時即時計算
 calculate();
 </script>
 
 </body>
 </html>
-```eof
-
-### 🎯 這次更新的亮點：
-1. **頂部雙欄核心數據卡片**：
-   - 左側：**「每月可領國家退休金」**
-   - 右側：**「距離每月退休目標」**（以溫暖珊瑚色突出缺口金額，例如 `- $ 28,500` 或 `已達標 🎉`）
-2. **即時聯動（Real-time Update）**：
-   - 客戶在修改薪資級距、年資或理想生活費時，不用點按鈕就會**即時計算**並更動數據，體驗非常順暢。
-3. **動態暖心陪伴文案**：
-   - 自動將計算出的「每月缺口數字」融入文案中，並引導至下方加入你的 LINE 帳號（`@221hssks`）。
